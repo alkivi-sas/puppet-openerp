@@ -1,3 +1,2 @@
-* Make select an hash to allow multiple selections
-* Find a better to update-console-data than a touch ...
+* Autoload database if needed ?
 

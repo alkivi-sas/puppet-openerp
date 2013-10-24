@@ -1,26 +1,24 @@
-# Console-data Module
+# OpenERP module
 
-This module will install and configure console-data.
+This module will install and configure openerp
 
 ## Usage
 
 ### Minimal server configuration
 
 ```puppet
-class { 'console_data': }
+class { 'openerp': }
 ```
-This will do the typical install, configure keyboard layout to use french by default.
+This will do the typical install using source as providing by openerp repository
+All you need to do is connect to localhost on the default port and proceed to default loading of database
 
-
-### More server configuration
+### Database ?
+Database and role for postgresql are not created but here is an helper using puppetlabs-postgresql module
 
 ```puppet
-class { 'console_data':
-  keymap         => 'console-data/keymap/azerty/french/variant',
-  keymap_select  => 'With Euro (latin 9)',
-  keymap_full    => 'fr-latin9',
-  keymap_family  => 'azerty',
-  bootmap_md5sum => 'c626478f99891cf5e0489e171fae7811',
+postgresql::server::role { 'openerp':
+  password_hash => postgresql_password('openerp', alkivi_password('openerp', 'db')),
+  createdb      => true,
 }
 ```
 
