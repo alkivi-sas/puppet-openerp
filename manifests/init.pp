@@ -1,5 +1,12 @@
 class openerp (
+  $motd = true
 ) {
+
+  if($motd)
+  {
+    motd::register{ 'OpenERP': }
+  }
+
   # declare all parameterized classes
   class { 'openerp::params': }
   class { 'openerp::install': }
